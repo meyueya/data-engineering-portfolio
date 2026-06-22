@@ -1,4 +1,7 @@
 __pycache__/
 .venv/
 data/db.sqlite
+dbt_project/.user.yml
+dbt_project/logs/
+dbt_project/target/
 .DS_Store

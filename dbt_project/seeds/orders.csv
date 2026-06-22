@@ -1,0 +1,5 @@
+order_id,customer_id,order_date,amount,status
+1001,1,2026-06-01,149.90,COMPLETED
+1002,2,2026-06-02,79.50,completed
+1003,1,2026-06-03,220.00,PENDING
+1004,3,2026-06-04,45.25,completed

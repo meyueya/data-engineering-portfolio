@@ -4,4 +4,8 @@ portfolio:
     dev:
       type: sqlite
       threads: 1
-      database: ../data/db.sqlite
+      database: portfolio
+      schema: main
+      schemas_and_paths:
+        main: ../data/db.sqlite
+      schema_directory: ../data

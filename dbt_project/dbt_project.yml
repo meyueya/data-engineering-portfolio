@@ -3,12 +3,9 @@ version: '1.0'
 config-version: 2
 profile: 'portfolio'
 
-source-paths: [models]
+model-paths: [models]
 seed-paths: [seeds]
 
 models:
   data_engineering_portfolio:
-    staging:
-      +schema: staging
-    marts:
-      +schema: marts
+    +materialized: view

@@ -1,5 +1,35 @@
 version: 2
 models:
+  - name: dim_customers
+    description: "Dimensión con los datos maestros de cada cliente"
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+      - name: email
+        tests:
+          - not_null
+          - unique
+
+  - name: fct_orders
+    description: "Tabla de hechos con los pedidos realizados"
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+      - name: amount
+        tests:
+          - not_null
+
   - name: jobs_summary
     description: "Summary metrics per company"
     columns:

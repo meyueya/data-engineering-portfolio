@@ -4,7 +4,7 @@ import csv
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / 'db.sqlite'
+DATA = ROOT / 'data' / 'db.sqlite'
 CSV = ROOT / 'dbt_project' / 'seeds' / 'jobs.csv'
 
 def create_db():
