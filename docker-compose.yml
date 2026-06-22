@@ -8,6 +8,7 @@ services:
       AIRFLOW__CORE__EXECUTOR: SequentialExecutor
       AIRFLOW__CORE__LOAD_EXAMPLES: "False"
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      PROJECT_ROOT: /opt/airflow
     volumes:
       - ./airflow/dags:/opt/airflow/dags:ro
       - ./data:/opt/airflow/data

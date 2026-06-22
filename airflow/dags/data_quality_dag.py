@@ -1,10 +1,11 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+import os
 import sqlite3
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(os.getenv('PROJECT_ROOT', Path(__file__).resolve().parents[2]))
 DB = ROOT / 'data' / 'db.sqlite'
 
 default_args = {

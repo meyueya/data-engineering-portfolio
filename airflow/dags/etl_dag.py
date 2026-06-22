@@ -2,10 +2,11 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
+import os
 import subprocess
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(os.getenv('PROJECT_ROOT', Path(__file__).resolve().parents[2]))
 SCRIPTS = ROOT / 'scripts'
 
 default_args = {
