@@ -2,6 +2,8 @@
 
 Repositorio ejemplo listo para ejecutar localmente. Contiene un proyecto DBT (SQLite), dos DAGs de Airflow, datos dummy y ejemplos de optimización SQL.
 
+**Stack:** DBT Core, Apache Airflow, SQLite, Python 3.11+
+
 ## Estructura del proyecto
 
 Los modelos, DAGs y ejemplos SQL principales se pueden revisar directamente en esta estructura:
