@@ -1,0 +1,12 @@
+version: 2
+models:
+  - name: jobs_summary
+    description: "Summary metrics per company"
+    columns:
+      - name: company
+        tests:
+          - not_null
+          - unique
+      - name: openings
+        tests:
+          - not_null
