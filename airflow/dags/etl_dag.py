@@ -35,7 +35,7 @@ with DAG(
 
     t2 = BashOperator(
         task_id='run_dbt',
-        bash_command=f'bash {SCRIPTS}/run_dbt.sh',
+        bash_command=f'bash {SCRIPTS}/run_dbt.sh ',
     )
 
     t1 >> t2
