@@ -1,0 +1,23 @@
+services:
+  airflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: "${AIRFLOW_UID:-50000}:0"
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags:ro
+      - ./data:/opt/airflow/data
+      - ./scripts:/opt/airflow/scripts:ro
+      - ./dbt_project:/opt/airflow/dbt_project
+    ports:
+      - "8080:8080"
+    command: standalone
+    healthcheck:
+      test: ["CMD-SHELL", "airflow db check"]
+      interval: 5s
+      timeout: 5s
+      retries: 30

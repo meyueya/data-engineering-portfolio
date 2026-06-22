@@ -17,6 +17,7 @@ jobs:
     - name: Set up Docker Compose (uses docker on runner)
       run: |
         docker compose version
+        echo "AIRFLOW_UID=$(id -u)" >> "$GITHUB_ENV"
 
     - name: Start Airflow with docker-compose
       run: |
@@ -25,8 +26,13 @@ jobs:
     - name: Wait for Airflow DB
       run: |
         for i in {1..60}; do
-          docker compose exec airflow airflow db check && break || sleep 2
+          if docker compose exec airflow airflow db check; then
+            exit 0
+          fi
+          sleep 2
         done
+        docker compose logs airflow
+        exit 1
 
     - name: Load data into SQLite
       run: |
@@ -34,13 +40,13 @@ jobs:
 
     - name: Run DBT (seed, run, test)
       run: |
-        docker compose exec airflow bash /opt/airflow/scripts/run_dbt.sh || true
+        docker compose exec airflow bash /opt/airflow/scripts/run_dbt.sh
 
-    - name: Test DAG: etl_load_and_dbt
+    - name: "Test DAG: etl_load_and_dbt"
       run: |
         docker compose exec airflow airflow dags test etl_load_and_dbt 2026-06-01
 
-    - name: Test DAG: data_quality_checks
+    - name: "Test DAG: data_quality_checks"
       run: |
         docker compose exec airflow airflow dags test data_quality_checks 2026-06-01
 
