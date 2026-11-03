@@ -15,7 +15,7 @@ services:
       - ./scripts:/opt/airflow/scripts:ro
       - ./dbt_project:/opt/airflow/dbt_project
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
     command: standalone
     healthcheck:
       test: ["CMD-SHELL", "airflow db check"]
